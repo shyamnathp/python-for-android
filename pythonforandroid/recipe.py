@@ -945,6 +945,11 @@ class PythonRecipe(Recipe):
                     env['PYTHONPATH'] = ':'.join(hppath + [env['PYTHONPATH']])
                 else:
                     env['PYTHONPATH'] = ':'.join(hppath)
+
+            info('Shyam Experimentation 2')
+            shprint(sh.echo, '$PATH', _env=env)
+            shprint(sh.echo, '$LDFLAGS', _env=env)
+            shprint(sh.echo, '$CFLAGS', _env=env)
         return env
 
     def should_build(self, arch):
@@ -1199,6 +1204,8 @@ class TargetPythonRecipe(Recipe):
             file_dirname, file_basename = split(filen)
             parts = file_basename.split('.')
             if len(parts) <= 2:
+                continue
+            if parts[1] == "abi3":
                 continue
             shprint(sh.mv, filen, join(file_dirname, parts[0] + '.so'))
 

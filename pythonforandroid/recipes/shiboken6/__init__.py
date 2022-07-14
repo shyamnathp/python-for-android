@@ -13,7 +13,7 @@ class ShibokenRecipe(PythonRecipe):
         ''' Unzip the wheel and copy into site-packages of target'''
         info('Installing {} into site-packages'.format(self.name))
         with zipfile.ZipFile(self.wheel_path, 'r') as zip_ref:
-            info('Unzip wheels and copy into {}'.format(self.ctx.get_python_install_dir()))
-            zip_ref.extractall(self.ctx.get_python_install_dir())
+            info('Unzip wheels and copy into {}'.format(self.ctx.get_python_install_dir(arch.arch)))
+            zip_ref.extractall(self.ctx.get_python_install_dir(arch.arch))
 
 recipe = ShibokenRecipe()

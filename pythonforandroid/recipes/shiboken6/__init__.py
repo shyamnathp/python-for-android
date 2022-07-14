@@ -4,7 +4,7 @@ import zipfile
 
 class ShibokenRecipe(PythonRecipe):
     version = '6.3.1'
-    wheel_path = '/home/shyamnath/qt_for_python/pyside-setup/dist/shiboken6-6.3.1-6.3.1-cp36-abi3-android_aarch64.whl'
+    wheel_path = '/home/shyamnath/qt_for_python/pyside-setup/dist/shiboken6-6.3.1-6.3.1-cp36-abi3-android_x86_64.whl'
 
     call_hostpython_via_targetpython = False
     install_in_hostpython = False

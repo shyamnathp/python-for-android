@@ -2,6 +2,7 @@ import setuptools
 from pythonforandroid.recipe import PythonRecipe, CppCompiledComponentsPythonRecipe
 from pythonforandroid.logger import info
 import zipfile
+from pythonforandroid.toolchain import shprint
 import sh
 
 class ShibokenRecipe(PythonRecipe):
@@ -15,9 +16,9 @@ class ShibokenRecipe(PythonRecipe):
         ''' Unzip the wheel and copy into site-packages of target'''
         env = self.get_recipe_env(arch)
         info('Shyam Experimentation')
-        sh.echo('$PATH', _env=env)
-        sh.echo('$LDFLAGS', _env=env)
-        sh.echo('$CFLAGS', _env=env)
+        shprint(sh.echo, '$PATH', _env=env)
+        shprint(sh.echo, '$LDFLAGS', _env=env)
+        shprint(sh.echo, '$CFLAGS', _env=env)
 
         info('Installing {} into site-packages'.format(self.name))
         with zipfile.ZipFile(self.wheel_path, 'r') as zip_ref:

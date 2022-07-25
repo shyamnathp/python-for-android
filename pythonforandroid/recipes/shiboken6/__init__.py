@@ -13,12 +13,7 @@ class ShibokenRecipe(PythonRecipe):
 
     def build_arch(self, arch):
         ''' Unzip the wheel and copy into site-packages of target'''
-        if name is None:
-            name = self.name
-        if env is None:
-            env = self.get_recipe_env(arch)
-
-
+        env = self.get_recipe_env(arch)
         info('Shyam Experimentation')
         sh.echo('$PATH', _env=env)
         sh.echo('$LDFLAGS', _env=env)

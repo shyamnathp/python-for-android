@@ -19,6 +19,7 @@ class ShibokenRecipe(PythonRecipe):
         shprint(sh.echo, '$PATH', _env=env)
         shprint(sh.echo, '$LDFLAGS', _env=env)
         shprint(sh.echo, '$CFLAGS', _env=env)
+        print(env)
 
         info('Installing {} into site-packages'.format(self.name))
         with zipfile.ZipFile(self.wheel_path, 'r') as zip_ref:

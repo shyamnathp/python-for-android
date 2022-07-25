@@ -16,6 +16,7 @@ class ShibokenRecipe(PythonRecipe):
         ''' Unzip the wheel and copy into site-packages of target'''
         env = self.get_recipe_env(arch)
         info('Shyam Experimentation')
+        info('ENV: {}'.format("\n".join("export {}='{}'".format(n, v) for n, v in env.items())))
         shprint(sh.echo, '$PATH', _env=env)
         shprint(sh.echo, '$LDFLAGS', _env=env)
         shprint(sh.echo, '$CFLAGS', _env=env)

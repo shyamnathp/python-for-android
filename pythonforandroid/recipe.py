@@ -945,11 +945,6 @@ class PythonRecipe(Recipe):
                     env['PYTHONPATH'] = ':'.join(hppath + [env['PYTHONPATH']])
                 else:
                     env['PYTHONPATH'] = ':'.join(hppath)
-
-            info('Shyam Experimentation 2')
-            shprint(sh.echo, '$PATH', _env=env)
-            shprint(sh.echo, '$LDFLAGS', _env=env)
-            shprint(sh.echo, '$CFLAGS', _env=env)
         return env
 
     def should_build(self, arch):

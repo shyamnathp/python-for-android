@@ -1200,6 +1200,8 @@ class TargetPythonRecipe(Recipe):
             parts = file_basename.split('.')
             if len(parts) <= 2:
                 continue
+            if parts[1] == "abi3":
+                continue
             shprint(sh.mv, filen, join(file_dirname, parts[0] + '.so'))
 
 

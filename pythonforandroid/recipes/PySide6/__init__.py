@@ -1,4 +1,5 @@
 import os
+import re
 from pythonforandroid.recipe import PythonRecipe, CppCompiledComponentsPythonRecipe
 from pythonforandroid.logger import info
 import zipfile
@@ -60,16 +61,22 @@ class PySideRecipe(PythonRecipe):
             if run_process(cmd) != 0:
                 raise RuntimeError(f"Error patching rpath in {executable_path}")
 
-        info('Copying android platform plugin')
-        shutil.copyfile(join(os.path.expanduser("~"), 'Qt','6.3.1','android_x86_64','plugins','platforms','libplugins_platforms_qtforandroid_x86_64.so'),
-                        join(self.ctx.get_libs_dir(arch.arch), 'libplugins_platforms_qtforandroid_x86_64.so'))
+        info('Copying plugins')
+        libs_path = '/home/shyamnath/qt_for_python/shyam/addressbook/build/android-build/libs/x86_64'
+        regex = re.compile('(libplugins_*.so$)')
 
-        info('Run patchelf on the plugins')
-        plugin_path = join(self.ctx.get_libs_dir(arch.arch), 'libplugins_platforms_qtforandroid_x86_64.so')
-        cmd = [patchelf_path, '--set-rpath', '$ORIGIN', plugin_path]
+        for root, dirs, files in os.walk(libs_path):
+            for file in files:
+                if regex.match(file):
+                    shutil.copyfile(join(os.path.expanduser("~"), '/qt_for_python/shyam/addressbook/build/android-build/libs/x86_64',file),
+                                    join(self.ctx.get_libs_dir(arch.arch), file))
 
-        if run_process(cmd) != 0:
-            raise RuntimeError(f"Error patching rpath in {plugin_path}")
+                    info('Run patchelf on the plugins')
+                    plugin_path = join(self.ctx.get_libs_dir(arch.arch), file)
+                    cmd = [patchelf_path, '--set-rpath', '$ORIGIN', plugin_path]
+
+                    if run_process(cmd) != 0:
+                        raise RuntimeError(f"Error patching rpath in {plugin_path}")
 
 
 recipe = PySideRecipe()

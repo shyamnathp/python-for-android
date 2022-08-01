@@ -56,7 +56,7 @@ public class PythonUtil {
         addLibraryIfExists(libsList, "Qt6Core_x86_64", libsDir);
         addLibraryIfExists(libsList, "Qt6Gui_x86_64", libsDir);
         addLibraryIfExists(libsList, "Qt6Widgets_x86_64", libsDir);
-        addLibraryIfExists(libsList, "plugins_platforms_qtforandroid_x86_64", libsDir);
+        addLibraryIfExists(libsList, "plugins_*", libsDir);
         libsList.add("python3.5m");
         libsList.add("python3.6m");
         libsList.add("python3.7m");

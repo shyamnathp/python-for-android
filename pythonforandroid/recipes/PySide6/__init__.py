@@ -63,7 +63,7 @@ class PySideRecipe(PythonRecipe):
 
         info('Copying plugins')
         libs_path = '/home/shyamnath/qt_for_python/shyam/addressbook/build/android-build/libs/x86_64'
-        regex = re.compile('(libplugins_*.so$)')
+        regex = re.compile('libplugins_*.so')
 
         for root, dirs, files in os.walk(libs_path):
             for file in files:

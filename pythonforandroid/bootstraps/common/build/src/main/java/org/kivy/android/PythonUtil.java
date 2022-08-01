@@ -54,6 +54,8 @@ public class PythonUtil {
         libsList.add("c++_shared");
         Log.v("Shyam", "loading Qt libraries");
         addLibraryIfExists(libsList, "Qt6Core_x86_64", libsDir);
+        addLibraryIfExists(libsList, "Qt6Gui_x86_64", libsDir);
+        addLibraryIfExists(libsList, "Qt6Widgets_x86_64", libsDir);
         libsList.add("python3.5m");
         libsList.add("python3.6m");
         libsList.add("python3.7m");

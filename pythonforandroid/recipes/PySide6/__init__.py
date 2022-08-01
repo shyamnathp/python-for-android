@@ -44,19 +44,21 @@ class PySideRecipe(PythonRecipe):
                         join(self.ctx.get_libs_dir(arch.arch), 'libc++_shared.so'))
 
         info('Copying Qt libraries to be loaded on startup')
-        shutil.copyfile(join(self.ctx.get_python_install_dir(arch.arch), 'PySide6', 'Qt', 'lib', 'libQt6Core_x86_64.so'),
-                        join(self.ctx.get_libs_dir(arch.arch), 'libQt6Core_x86_64.so'))
 
-        info('Run patchelf on the Qt binaries')
-        executable_path = join(self.ctx.get_libs_dir(arch.arch), 'libQt6Core_x86_64.so')
-        patchelf_path = shutil.which('patchelf')
-        if not isabs(patchelf_path):
-            patchelf_path = join(os.getcwd(), patchelf_path)
-            info(f"Using {self._patchelf_path} ...")
+        for binary in ['libQt6Core_x86_64.so', 'libQt6Gui_x86_64.so', 'libQt6Widgets_x86_64.so']:
+            shutil.copyfile(join(self.ctx.get_python_install_dir(arch.arch), 'PySide6', 'Qt', 'lib', binary),
+                            join(self.ctx.get_libs_dir(arch.arch), binary))
 
-        cmd = [patchelf_path, '--set-rpath', '$ORIGIN', executable_path]
+            info('Run patchelf on the Qt binaries')
+            executable_path = join(self.ctx.get_libs_dir(arch.arch), binary)
+            patchelf_path = shutil.which('patchelf')
+            if not isabs(patchelf_path):
+                patchelf_path = join(os.getcwd(), patchelf_path)
+                info(f"Using {self._patchelf_path} ...")
 
-        if run_process(cmd) != 0:
-            raise RuntimeError(f"Error patching rpath in {executable_path}")
+            cmd = [patchelf_path, '--set-rpath', '$ORIGIN', executable_path]
+
+            if run_process(cmd) != 0:
+                raise RuntimeError(f"Error patching rpath in {executable_path}")
 
 recipe = PySideRecipe()

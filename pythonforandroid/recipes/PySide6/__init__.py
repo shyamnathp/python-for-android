@@ -68,7 +68,8 @@ class PySideRecipe(PythonRecipe):
         for root, dirs, files in os.walk(libs_path):
             for file in files:
                 if regex.match(file):
-                    shutil.copyfile(join(os.path.expanduser("~"), '/qt_for_python/shyam/addressbook/build/android-build/libs/x86_64',file),
+                    info(f"Copying plugins: {file}")
+                    shutil.copyfile(join('/home/shyamnath/qt_for_python/shyam/addressbook/build/android-build/libs/x86_64',file),
                                     join(self.ctx.get_libs_dir(arch.arch), file))
 
                     info('Run patchelf on the plugins')

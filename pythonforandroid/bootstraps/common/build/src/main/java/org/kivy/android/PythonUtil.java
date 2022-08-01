@@ -51,7 +51,7 @@ public class PythonUtil {
         addLibraryIfExists(libsList, "SDL2_ttf", libsDir);
         Log.v("Shyam", "loading c++_shared library");
         addLibraryIfExists(libsList, "c++_shared", libsDir);
-        libsList.add("c++_shared")
+        libsList.add("c++_shared");
         Log.v("Shyam", "loading Qt libraries");
         addLibraryIfExists(libsList, "Qt6Core_x86_64", libsDir);
         libsList.add("python3.5m");

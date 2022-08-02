@@ -52,6 +52,11 @@ public class PythonUtil {
         Log.v("Shyam", "loading c++_shared library");
         addLibraryIfExists(libsList, "c++_shared", libsDir);
         libsList.add("c++_shared");
+        Log.v("Shyam", "loading Qt libraries");
+        addLibraryIfExists(libsList, "Qt6Core_x86_64", libsDir);
+        addLibraryIfExists(libsList, "Qt6Gui_x86_64", libsDir);
+        addLibraryIfExists(libsList, "Qt6Widgets_x86_64", libsDir);
+        addLibraryIfExists(libsList, "addressbook_x86_64", libsDir);
         addLibraryIfExists(libsList, "plugins_imageformats_qgif_x86_64", libsDir);
         addLibraryIfExists(libsList, "plugins_imageformats_qicns_x86_64", libsDir);
         addLibraryIfExists(libsList, "plugins_imageformats_qico_x86_64", libsDir);
@@ -62,10 +67,6 @@ public class PythonUtil {
         addLibraryIfExists(libsList, "plugins_imageformats_qwebp_x86_64", libsDir);
         addLibraryIfExists(libsList, "plugins_styles_qandroidstyle_x86_64", libsDir);
         addLibraryIfExists(libsList, "plugins_platforms_qtforandroid_x86_64", libsDir);
-        Log.v("Shyam", "loading Qt libraries");
-        addLibraryIfExists(libsList, "Qt6Core_x86_64", libsDir);
-        addLibraryIfExists(libsList, "Qt6Gui_x86_64", libsDir);
-        addLibraryIfExists(libsList, "Qt6Widgets_x86_64", libsDir);
         libsList.add("python3.5m");
         libsList.add("python3.6m");
         libsList.add("python3.7m");

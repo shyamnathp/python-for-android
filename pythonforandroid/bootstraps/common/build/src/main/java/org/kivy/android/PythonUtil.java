@@ -64,8 +64,8 @@ public class PythonUtil {
         addLibraryIfExists(libsList, "plugins_imageformats_qtiff_x86_64", libsDir);
         addLibraryIfExists(libsList, "plugins_imageformats_qwbmp_x86_64", libsDir);
         addLibraryIfExists(libsList, "plugins_imageformats_qwebp_x86_64", libsDir);
-        addLibraryIfExists(libsList, "plugins_platforms_qtforandroid_x86_64", libsDir);
         addLibraryIfExists(libsList, "plugins_styles_qandroidstyle_x86_64", libsDir);
+        addLibraryIfExists(libsList, "plugins_platforms_qtforandroid_x86_64", libsDir);
         libsList.add("python3.5m");
         libsList.add("python3.6m");
         libsList.add("python3.7m");

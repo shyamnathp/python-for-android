@@ -57,6 +57,7 @@ public class PythonUtil {
         addLibraryIfExists(libsList, "Qt6Gui_x86_64", libsDir);
         addLibraryIfExists(libsList, "Qt6Widgets_x86_64", libsDir);
         addLibraryIfExists(libsList, "addressbook_x86_64", libsDir);
+        addLibraryIfExists(libsList, "plugins_platforms_qtforandroid_x86_64", libsDir);
         addLibraryIfExists(libsList, "plugins_imageformats_qgif_x86_64", libsDir);
         addLibraryIfExists(libsList, "plugins_imageformats_qicns_x86_64", libsDir);
         addLibraryIfExists(libsList, "plugins_imageformats_qico_x86_64", libsDir);
@@ -66,7 +67,6 @@ public class PythonUtil {
         addLibraryIfExists(libsList, "plugins_imageformats_qwbmp_x86_64", libsDir);
         addLibraryIfExists(libsList, "plugins_imageformats_qwebp_x86_64", libsDir);
         addLibraryIfExists(libsList, "plugins_styles_qandroidstyle_x86_64", libsDir);
-        addLibraryIfExists(libsList, "plugins_platforms_qtforandroid_x86_64", libsDir);
         libsList.add("python3.5m");
         libsList.add("python3.6m");
         libsList.add("python3.7m");
@@ -82,16 +82,15 @@ public class PythonUtil {
         for (String lib : getLibraries(libsDir)) {
             Log.v(TAG, "Loading library: " + lib);
             try {
-                if (lib.contains("plugins_platforms")) {
-                    String platform_plugin = libsDir.getAbsolutePath() + "/libplugins_platforms_qtforandroid_x86_64.so";
-                    Log.v(TAG, "Loading Shyam libplugins_platforms" + platform_plugin);
-                    System.load(platform_plugin);
-                }
-                else
-                {
-                    Log.v(TAG, "Loading Shyam libplugins_platforms not load");
-                    System.loadLibrary(lib);
-                }
+                // if (lib.contains("plugins_platforms")) {
+                //     String platform_plugin = libsDir.getAbsolutePath() + "/libplugins_platforms_qtforandroid_x86_64.so";
+                //     Log.v(TAG, "Loading Shyam libplugins_platforms" + platform_plugin);
+                //     System.load(platform_plugin);
+                // }
+                // else
+                // {
+                //     Log.v(TAG, "Loading Shyam libplugins_platforms not load");
+                System.loadLibrary(lib);
                 if (lib.startsWith("python")) {
                     foundPython = true;
                 }

@@ -83,7 +83,7 @@ public class PythonUtil {
             Log.v(TAG, "Loading library: " + lib);
             try {
                 if (lib.contains("plugins_platforms")) {
-                    String platform_plugin = libsDir.getAbsolutePath() + "/libplugins_platforms_qtforandroid_x86_64.so"
+                    String platform_plugin = libsDir.getAbsolutePath() + "/libplugins_platforms_qtforandroid_x86_64.so";
                     Log.v(TAG, "Loading Shyam libplugins_platforms" + platform_plugin);
                     System.load(platform_plugin);
                 }

@@ -82,12 +82,13 @@ public class PythonUtil {
         for (String lib : getLibraries(libsDir)) {
             Log.v(TAG, "Loading library: " + lib);
             try {
-                if (lib.startsWith("libplugins_platforms")) {
+                if (lib.contains("plugins_platforms")) {
                     Log.v(TAG, "Loading Shyam libplugins_platforms");
                     System.load("/home/shyamnath/qt_for_python/shyam/kivy_example/.buildozer/android/platform/build-x86_64/dists/shiboken_app/libs/x86_64/libplugins_platforms_qtforandroid_x86_64.so");
                 }
                 else
                 {
+                    Log.v(TAG, "Loading Shyam libplugins_platforms not load");
                     System.loadLibrary(lib);
                 }
                 if (lib.startsWith("python")) {

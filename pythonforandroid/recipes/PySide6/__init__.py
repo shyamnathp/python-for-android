@@ -40,9 +40,9 @@ class PySideRecipe(PythonRecipe):
             info('Unzip wheels and copy into {}'.format(self.ctx.get_python_install_dir(arch.arch)))
             zip_ref.extractall(self.ctx.get_python_install_dir(arch.arch))
 
-        info('Copying libc++_shared.so file to be loaded on startup')
-        shutil.copyfile(join(os.path.expanduser("~"), 'libc++_shared.so'),
-                        join(self.ctx.get_libs_dir(arch.arch), 'libc++_shared.so'))
+        # info('Copying libc++_shared.so file to be loaded on startup')
+        # shutil.copyfile(join(os.path.expanduser("~"), 'libc++_shared.so'),
+        #                 join(self.ctx.get_libs_dir(arch.arch), 'libc++_shared.so'))
 
         patchelf_path = shutil.which('patchelf')
         if not isabs(patchelf_path):
@@ -66,17 +66,18 @@ class PySideRecipe(PythonRecipe):
 
         for root, dirs, files in os.walk(libs_path):
             for file in files:
-                if 'libplugins_' in file or 'libaddressbook' in file:
+                if 'libplugins_' in file or 'libaddressbook' in file or 'libc++_shared' in file:
                     info(f"Copying plugins: {file}")
                     shutil.copyfile(join('/home/shyamnath/qt_for_python/shyam/addressbook/build/android-build/libs/x86_64',file),
                                     join(self.ctx.get_libs_dir(arch.arch), file))
 
                     info('Run patchelf on the plugins')
                     plugin_path = join(self.ctx.get_libs_dir(arch.arch), file)
-                    cmd = [patchelf_path, '--set-rpath', '$ORIGIN', plugin_path]
 
-                    if run_process(cmd) != 0:
-                        raise RuntimeError(f"Error patching rpath in {plugin_path}")
+                    if 'libc++_shared' not in file and 'libplugins_platforms' not in file:
+                        cmd = [patchelf_path, '--set-rpath', '$ORIGIN', plugin_path]
+                        if run_process(cmd) != 0:
+                            raise RuntimeError(f"Error patching rpath in {plugin_path}")
 
 
 recipe = PySideRecipe()

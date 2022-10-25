@@ -56,8 +56,8 @@ public class PythonUtil {
         addLibraryIfExists(libsList, "Qt6Core_x86_64", libsDir);
         addLibraryIfExists(libsList, "Qt6Gui_x86_64", libsDir);
         addLibraryIfExists(libsList, "Qt6Widgets_x86_64", libsDir);
-        addLibraryIfExists(libsList, "addressbook_x86_64", libsDir);
         addLibraryIfExists(libsList, "plugins_platforms_qtforandroid_x86_64", libsDir);
+        addLibraryIfExists(libsList, "addressbook_x86_64", libsDir);
         addLibraryIfExists(libsList, "plugins_imageformats_qgif_x86_64", libsDir);
         addLibraryIfExists(libsList, "plugins_imageformats_qicns_x86_64", libsDir);
         addLibraryIfExists(libsList, "plugins_imageformats_qico_x86_64", libsDir);

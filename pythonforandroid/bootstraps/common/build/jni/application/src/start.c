@@ -127,7 +127,7 @@ int main(int argc, char *argv[]) {
                 env_value[strlen(env_value)-1] == '\r') {
               // Also remove windows line breaks (\r\n)
               env_value[strlen(env_value)-1] = '\0';
-            } 
+            }
           }
 
           // Set value:

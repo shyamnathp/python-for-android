@@ -1,5 +1,5 @@
 
-#define BOOTSTRAP_NAME_SDL2
+#define BOOTSTRAP_NAME_QT
+#define BOOTSTRAP_USES_NO_SDL_HEADERS
 
-const char bootstrap_name[] = "SDL2";  // capitalized for historic reasons
-
+const char bootstrap_name[] = "qt";

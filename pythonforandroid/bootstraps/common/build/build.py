@@ -79,7 +79,7 @@ if PYTHON is not None:
     BLACKLIST_PATTERNS.append('*.py')
 
 WHITELIST_PATTERNS = []
-if get_bootstrap_name() in ('sdl2', 'webview', 'service_only'):
+if get_bootstrap_name() in ('sdl2', 'webview', 'service_only', 'qt'):
     WHITELIST_PATTERNS.append('pyconfig.h')
 
 python_files = []
@@ -236,7 +236,7 @@ def compile_dir(dfn, optimize_python=True):
 
 def make_package(args):
     # If no launcher is specified, require a main.py/main.pyo:
-    if (get_bootstrap_name() != "sdl" or args.launcher is None) and \
+    if (get_bootstrap_name() in ["sdl", "qt"] or args.launcher is None) and \
             get_bootstrap_name() not in ["webview", "service_library"]:
         # (webview doesn't need an entrypoint, apparently)
         if args.private is None or (
@@ -526,6 +526,8 @@ main.py that loads it.''')
     }
     if get_bootstrap_name() == "sdl2":
         render_args["url_scheme"] = url_scheme
+    elif get_bootstrap_name() == "qt":
+        render_args["url_scheme"] = "qt"
     render(
         'AndroidManifest.tmpl.xml',
         manifest_path,
@@ -547,7 +549,7 @@ main.py that loads it.''')
         android_api=android_api,
         build_tools_version=build_tools_version,
         debug_build="debug" in args.build_mode,
-        is_library=(get_bootstrap_name() == 'service_library'),
+        is_library=(get_bootstrap_name() == 'service_library')
         )
 
     # gradle properties
@@ -577,12 +579,28 @@ main.py that loads it.''')
         "args": args,
         "private_version": hashlib.sha1(private_version.encode()).hexdigest()
     }
+
     if get_bootstrap_name() == "sdl2":
         render_args["url_scheme"] = url_scheme
+    elif get_bootstrap_name() == "qt":
+        render_args["url_scheme"] = "qt"
     render(
         'strings.tmpl.xml',
-        join(res_dir, 'values/strings.xml'),
+        join(res_dir, 'values/strings/strings.xml'),
         **render_args)
+
+    # Library resources
+    if get_bootstrap_name() == "qt":
+        qt_libs = args.qt_libs.split(",")
+        load_local_libs = args.load_local_libs.split(",")
+        arch = get_dist_info_for("archs")[0]
+        render(
+            'libs.tmpl.xml',
+            join(res_dir, 'values/libs.xml'),
+            qt_libs=qt_libs,
+            load_local_libs=load_local_libs,
+            arch=arch
+        )
 
     if exists(join("templates", "custom_rules.tmpl.xml")):
         render(
@@ -851,6 +869,11 @@ tools directory of the Android SDK.
                     help='Use that parameter if you need to implement your own PythonServive Java class')
     ap.add_argument('--activity-class-name', dest='activity_class_name', default=DEFAULT_PYTHON_ACTIVITY_JAVA_CLASS,
                     help='The full java class name of the main activity')
+    if get_bootstrap_name() == "qt":
+        ap.add_argument('--qt-libs', dest='qt_libs', required=True,
+                        help='comma separated list of Qt libraries to be loaded')
+        ap.add_argument('--load-local-libs', dest='load_local_libs', required=True,
+                        help='comma separated list of Qt plugin libraries to be loaded')
 
     # Put together arguments, and add those from .p4a config file:
     if args is None:

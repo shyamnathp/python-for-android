@@ -39,7 +39,7 @@ android {
         manifestPlaceholders = {{ args.manifest_placeholders}}
     }
 
-	
+
 	packagingOptions {
         {% if debug_build -%}
         doNotStrip '**/*.so'
@@ -48,7 +48,7 @@ android {
         exclude 'lib/**/gdb.setup'
         {%- endif %}
 	}
-	
+
 
 	{% if args.sign -%}
 	signingConfigs {
@@ -107,7 +107,7 @@ android {
     }
 
     aaptOptions {
-        noCompress "tflite"
+        noCompress "tflite", "rcc"
     }
 
 }

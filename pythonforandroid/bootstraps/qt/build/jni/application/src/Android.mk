@@ -5,7 +5,7 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := main
 
 # Add your application source files here...
-LOCAL_SRC_FILES := start.c pyjniusjni.c
+LOCAL_SRC_FILES := start.c
 
 LOCAL_CFLAGS += -I$(PYTHON_INCLUDE_ROOT) $(EXTRA_CFLAGS)
 

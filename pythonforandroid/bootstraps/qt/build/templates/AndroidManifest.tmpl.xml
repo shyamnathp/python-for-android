@@ -90,6 +90,19 @@
             {%- if args.intent_filters -%}
             {{- args.intent_filters -}}
             {%- endif -%}
+
+            <!-- These three meta-data comes from Qt AndroidManifest.txt -->
+            <meta-data
+                    android:name="android.app.lib_name"
+                    android:value="main"/>
+
+            <meta-data
+                    android:name="android.app.arguments"
+                    android:value="" />
+
+            <meta-data
+                    android:name="android.app.extract_android_style"
+                    android:value="minimal" />
         </activity>
 
         {% if args.launcher %}
@@ -102,19 +115,6 @@
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
           </intent-filter>
-
-          <!-- These three meta-data comes from Qt AndroidManifest.txt -->
-          <meta-data
-                  android:name="android.app.lib_name"
-                  android:value="@string/app_name"/>
-
-          <meta-data
-                  android:name="android.app.arguments"
-                  android:value="" />
-
-          <meta-data
-                  android:name="android.app.extract_android_style"
-                  android:value="minimal" />
 
         </activity>
         {% endif %}

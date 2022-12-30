@@ -60,7 +60,7 @@ public class PythonActivity extends QtActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.v(TAG, "My oncreate running");
+        this.mActivity = this
         Log.v(TAG, "Ready to unpack");
         File app_root_file = new File(getAppRoot());
         PythonUtil.unpackAsset(mActivity, "private", app_root_file, true);

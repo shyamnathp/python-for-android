@@ -20,7 +20,7 @@ import android.os.PowerManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 
-import org.kivy.android.QtActivity;
+import org.qtproject.qt.android.bindings.QtActivity;
 
 public class PythonActivity extends QtActivity {
 

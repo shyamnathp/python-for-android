@@ -52,12 +52,6 @@ public class PythonActivity extends QtActivity {
         return "main.py";
     }
 
-    public static void initialize() {
-        // The static nature of the singleton and Android quirkiness force us to initialize everything here
-        // Otherwise, when exiting the app and returning to it, these variables *keep* their pre exit values
-        mBrokenLibraries = false;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.mActivity = this;

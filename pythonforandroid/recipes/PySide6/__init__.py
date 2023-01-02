@@ -66,7 +66,7 @@ class PySideRecipe(PythonRecipe):
 
         for root, dirs, files in os.walk(libs_path):
             for file in files:
-                if 'libplugins_' in file or 'libaddressbook' in file or 'libc++_shared' in file:
+                if 'libplugins_' in file or 'libc++_shared' in file:
                     info(f"Copying plugins: {file}")
                     shutil.copyfile(join('/home/shyamnath/qt_for_python/shyam/addressbook/build/android-build/libs/x86_64',file),
                                     join(self.ctx.get_libs_dir(arch.arch), file))

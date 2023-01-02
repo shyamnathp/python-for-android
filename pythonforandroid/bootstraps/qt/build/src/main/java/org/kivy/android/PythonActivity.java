@@ -60,7 +60,7 @@ public class PythonActivity extends QtActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        this.mActivity = this
+        this.mActivity = this;
         Log.v(TAG, "Ready to unpack");
         File app_root_file = new File(getAppRoot());
         PythonUtil.unpackAsset(mActivity, "private", app_root_file, true);
@@ -71,6 +71,7 @@ public class PythonActivity extends QtActivity {
 
         // Set up the Python environment
         String app_root_dir = getAppRoot();
+        Log.v("Shyam", "App Root: " + app_root_dir);
         String mFilesDirectory = mActivity.getFilesDir().getAbsolutePath();
         String entry_point = getEntryPoint(app_root_dir);
 

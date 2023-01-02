@@ -586,7 +586,7 @@ main.py that loads it.''')
         render_args["url_scheme"] = "qt"
     render(
         'strings.tmpl.xml',
-        join(res_dir, 'values/strings/strings.xml'),
+        join(res_dir, 'values/strings.xml'),
         **render_args)
 
     # Library resources

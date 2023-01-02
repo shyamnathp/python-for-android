@@ -399,7 +399,7 @@ JNIEXPORT void JNICALL Java_org_kivy_android_PythonService_nativeStart(
   main(1, argv);
 }
 
-#if defined(BOOTSTRAP_NAME_WEBVIEW) || defined(BOOTSTRAP_NAME_SERVICEONLY)
+#if defined(BOOTSTRAP_NAME_WEBVIEW) || defined(BOOTSTRAP_NAME_SERVICEONLY) || defined(BOOTSTRAP_NAME_QT)
 // Webview and service_only uses some more functions:
 
 void Java_org_kivy_android_PythonActivity_nativeSetenv(

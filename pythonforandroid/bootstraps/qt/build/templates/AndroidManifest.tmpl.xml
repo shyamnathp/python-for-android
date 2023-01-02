@@ -41,7 +41,7 @@
     <!--
     To-Do: might have to change android:name
     Use it from the library -->
-    <application android:name="org.kivy.android.QtApplication"
+    <application android:name="org.qtproject.qt.android.bindings.QtApplication"
                  android:label="@string/app_name"
                  {% if debug %}android:debuggable="true"{% endif %}
                  android:icon="@mipmap/icon"

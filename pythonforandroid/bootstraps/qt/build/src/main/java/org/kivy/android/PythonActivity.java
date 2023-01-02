@@ -53,7 +53,7 @@ public class PythonActivity extends QtActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         this.mActivity = this;
         Log.v(TAG, "Ready to unpack");
         File app_root_file = new File(getAppRoot());

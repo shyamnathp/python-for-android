@@ -2,7 +2,7 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := main
+LOCAL_MODULE := main_x86_64
 
 # Add your application source files here...
 LOCAL_SRC_FILES := start.c

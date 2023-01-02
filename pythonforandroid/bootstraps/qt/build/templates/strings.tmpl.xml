@@ -1,4 +1,3 @@
- <!-- This file is probably not needed for qt use case -->
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">{{ args.name }}</string>

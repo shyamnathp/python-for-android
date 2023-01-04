@@ -62,22 +62,26 @@ class PySideRecipe(PythonRecipe):
                 raise RuntimeError(f"Error patching rpath in {executable_path}")
 
         info('Copying plugins')
-        libs_path = '/home/shyamnath/qt_for_python/shyam/addressbook/build/android-build/libs/x86_64'
+        shutil.copyfile(join('/home/shyamnath/qt_for_python/shyam/addressbook/build/android-build/libs/x86_64', 'libc++_shared.so'),
+                        join(self.ctx.get_libs_dir(arch.arch), 'libc++_shared.so'))
 
-        for root, dirs, files in os.walk(libs_path):
-            for file in files:
-                if 'libplugins_' in file or 'libc++_shared' in file:
-                    info(f"Copying plugins: {file}")
-                    shutil.copyfile(join('/home/shyamnath/qt_for_python/shyam/addressbook/build/android-build/libs/x86_64',file),
-                                    join(self.ctx.get_libs_dir(arch.arch), file))
+        shutil.copyfile(join('/home/shyamnath/qt5/qt6_build/x86_64/install/plugins/platforms', 'libplugins_platforms_qtforandroid_x86_64.so'),
+                        join(self.ctx.get_libs_dir(arch.arch), 'libplugins_platforms_qtforandroid_x86_64.so'))
 
-                    info('Run patchelf on the plugins')
-                    plugin_path = join(self.ctx.get_libs_dir(arch.arch), file)
+        # for root, dirs, files in os.walk(libs_path):
+        #     for file in files:
+        #         if 'libplugins_' in file or 'libc++_shared' in file:
+        #             info(f"Copying plugins: {file}")
+        #             shutil.copyfile(join('/home/shyamnath/qt_for_python/shyam/addressbook/build/android-build/libs/x86_64',file),
+        #                             join(self.ctx.get_libs_dir(arch.arch), file))
 
-                    if 'libc++_shared' not in file and 'libplugins_platforms' not in file:
-                        cmd = [patchelf_path, '--set-rpath', '$ORIGIN', plugin_path]
-                        if run_process(cmd) != 0:
-                            raise RuntimeError(f"Error patching rpath in {plugin_path}")
+        #             info('Run patchelf on the plugins')
+        #             plugin_path = join(self.ctx.get_libs_dir(arch.arch), file)
+
+        #             if 'libc++_shared' not in file and 'libplugins_platforms' not in file:
+        #                 cmd = [patchelf_path, '--set-rpath', '$ORIGIN', plugin_path]
+        #                 if run_process(cmd) != 0:
+        #                     raise RuntimeError(f"Error patching rpath in {plugin_path}")
 
 
 recipe = PySideRecipe()

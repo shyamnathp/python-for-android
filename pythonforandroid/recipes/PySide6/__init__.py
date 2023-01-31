@@ -25,8 +25,8 @@ def run_process(args, initial_env=None):
     return exit_code
 
 class PySideRecipe(PythonRecipe):
-    version = '6.3.1'
-    wheel_path = '/home/shyamnath/qt_for_python/pyside-setup/dist/PySide6-6.3.1-6.3.1-cp36-abi3-android_x86_64.whl'
+    version = '6.4.0'
+    wheel_path = '/home/shyamnath/qt_for_python/pyside-setup/dist/PySide6-6.4.0a1-6.4.0-cp37-abi3-android_x86_64.whl'
     depends = ['shiboken6']
     call_hostpython_via_targetpython = False
     install_in_hostpython = False
@@ -65,7 +65,7 @@ class PySideRecipe(PythonRecipe):
         shutil.copyfile(join('/home/shyamnath/qt_for_python/shyam/addressbook/build/android-build/libs/x86_64', 'libc++_shared.so'),
                         join(self.ctx.get_libs_dir(arch.arch), 'libc++_shared.so'))
 
-        shutil.copyfile(join('/home/shyamnath/qt5/qt6_build/x86_64/install/plugins/platforms', 'libplugins_platforms_qtforandroid_x86_64.so'),
+        shutil.copyfile(join(self.ctx.get_python_install_dir(arch.arch), 'PySide6', 'Qt', 'plugins', 'platforms' 'libplugins_platforms_qtforandroid_x86_64.so'),
                         join(self.ctx.get_libs_dir(arch.arch), 'libplugins_platforms_qtforandroid_x86_64.so'))
 
         # for root, dirs, files in os.walk(libs_path):

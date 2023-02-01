@@ -65,7 +65,8 @@ class PySideRecipe(PythonRecipe):
         shutil.copyfile(join('/home/shyamnath/qt_for_python/shyam/addressbook/build/android-build/libs/x86_64', 'libc++_shared.so'),
                         join(self.ctx.get_libs_dir(arch.arch), 'libc++_shared.so'))
 
-        shutil.copyfile(join(self.ctx.get_python_install_dir(arch.arch), 'PySide6', 'Qt', 'plugins', 'platforms', 'libplugins_platforms_qtforandroid_x86_64.so'),
+        # shutil.copyfile(join(self.ctx.get_python_install_dir(arch.arch), 'PySide6', 'Qt', 'plugins', 'platforms', 'libplugins_platforms_qtforandroid_x86_64.so'),
+        shutil.copyfile(join('/home/shyamnath/qt5/qt6_build/x86_64/install/plugins/platforms', 'libplugins_platforms_qtforandroid_x86_64.so'),
                         join(self.ctx.get_libs_dir(arch.arch), 'libplugins_platforms_qtforandroid_x86_64.so'))
 
         # for root, dirs, files in os.walk(libs_path):

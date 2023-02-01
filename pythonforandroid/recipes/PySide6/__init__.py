@@ -25,8 +25,8 @@ def run_process(args, initial_env=None):
     return exit_code
 
 class PySideRecipe(PythonRecipe):
-    version = '6.4.0'
-    wheel_path = '/home/shyamnath/qt_for_python/pyside-setup/dist/PySide6-6.4.0a1-6.4.0-cp37-abi3-android_x86_64.whl'
+    version = '6.3.1'
+    wheel_path = '/home/shyamnath/qt_for_python/pyside-setup/dist/PySide6-6.3.1-6.3.1-cp36-abi3-android_x86_64.whl'
     depends = ['shiboken6']
     call_hostpython_via_targetpython = False
     install_in_hostpython = False

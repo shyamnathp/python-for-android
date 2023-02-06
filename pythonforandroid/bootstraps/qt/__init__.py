@@ -44,9 +44,8 @@ class QtBootstrap(Bootstrap):
                 with open('blacklist.txt', 'a') as fileh:
                     fileh.write('\nsqlite3/*\nlib-dynload/_sqlite3.so\n')
 
-        # TODO: remove this comment. We want the libraries stripped.
-        # if not self.ctx.with_debug_symbols:
-        #     self.strip_libraries(arch)
+        if not self.ctx.with_debug_symbols:
+            self.strip_libraries(arch)
         self.fry_eggs(site_packages_dir)
         super().assemble_distribution()
 

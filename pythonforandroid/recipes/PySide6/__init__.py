@@ -3,6 +3,7 @@ from pythonforandroid.recipe import PythonRecipe
 from pythonforandroid.logger import info
 import zipfile
 from pythonforandroid.toolchain import shutil
+from pathlib import Path
 from os.path import join, isabs
 import subprocess
 
@@ -45,9 +46,10 @@ class PySideRecipe(PythonRecipe):
             patchelf_path = join(os.getcwd(), patchelf_path)
             info(f"Using {self._patchelf_path} ...")
 
+        lib_dir = Path(f"{self.ctx.get_python_install_dir(arch.arch)}/PySide6/Qt/lib")
         info('Copying Qt libraries to be loaded on startup')
-        for binary in ['libQt6Core_x86_64.so', 'libQt6Gui_x86_64.so', 'libQt6Widgets_x86_64.so']:
-            shutil.copyfile(join(self.ctx.get_python_install_dir(arch.arch), 'PySide6', 'Qt', 'lib', binary),
+        for binary in list(lib_dir.iterdir()):
+            shutil.copyfile(binary,
                             join(self.ctx.get_libs_dir(arch.arch), binary))
 
             info('Run patchelf on the Qt binaries')

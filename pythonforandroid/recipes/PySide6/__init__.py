@@ -57,7 +57,8 @@ class PySideRecipe(PythonRecipe):
             if run_process(cmd) != 0:
                 raise RuntimeError(f"Error patching rpath in {executable_path}")
 
-        shutil.copyfile(join(arch.ndk_lib_dir, 'libc++_shared.so'),
+        libcpp_path = f"{self.ctx.ndk_sysroot}/usr/lib/{arch.command_prefix}/libc++_shared.so"
+        shutil.copyfile(libcpp_path,
                         join(self.ctx.get_libs_dir(arch.arch), 'libc++_shared.so'))
 
         shutil.copyfile(join(self.ctx.get_python_install_dir(arch.arch), 'PySide6', 'Qt', 'plugins', 'platforms', 'libplugins_platforms_qtforandroid_x86_64.so'),

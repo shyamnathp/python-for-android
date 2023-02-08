@@ -50,19 +50,18 @@ class PySideRecipe(PythonRecipe):
         info('Copying Qt libraries to be loaded on startup')
         shutil.copytree(lib_dir, self.ctx.get_libs_dir(arch.arch), dirs_exist_ok=True)
 
-        info('Run patchelf on the Qt binaries')
-        for binary in list(Path(self.ctx.get_libs_dir(arch.arch))).iterdir():
-            cmd = [patchelf_path, '--set-rpath', '$ORIGIN', binary]
+        # info('Run patchelf on the Qt binaries')
+        # for binary in list(Path(self.ctx.get_libs_dir(arch.arch)).iterdir()):
+        #     cmd = [patchelf_path, '--set-rpath', '$ORIGIN', binary]
 
-            if run_process(cmd) != 0:
-                raise RuntimeError(f"Error patching rpath in {binary}")
+        #     if run_process(cmd) != 0:
+        #         raise RuntimeError(f"Error patching rpath in {binary}")
 
         libcpp_path = f"{self.ctx.ndk_sysroot}/usr/lib/{arch.command_prefix}/libc++_shared.so"
-        shutil.copyfile(libcpp_path,
-                        join(self.ctx.get_libs_dir(arch.arch), 'libc++_shared.so'))
+        shutil.copyfile(libcpp_path, Path(self.ctx.get_libs_dir(arch.arch)) / 'libc++_shared.so')
 
-        shutil.copyfile(join(self.ctx.get_python_install_dir(arch.arch), 'PySide6', 'Qt', 'plugins', 'platforms', 'libplugins_platforms_qtforandroid_x86_64.so'),
-                        join(self.ctx.get_libs_dir(arch.arch), 'libplugins_platforms_qtforandroid_x86_64.so'))
+        shutil.copyfile(Path(self.ctx.get_python_install_dir(arch.arch) / 'PySide6' / 'Qt' / 'plugins' / 'platforms' / 'libplugins_platforms_qtforandroid_x86_64.so'),
+                        Path(self.ctx.get_libs_dir(arch.arch) / 'libplugins_platforms_qtforandroid_x86_64.so'))
 
 
 recipe = PySideRecipe()

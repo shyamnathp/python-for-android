@@ -48,7 +48,7 @@ class PySideRecipe(PythonRecipe):
 
         lib_dir = Path(f"{self.ctx.get_python_install_dir(arch.arch)}/PySide6/Qt/lib")
         info('Copying Qt libraries to be loaded on startup')
-        shutil.copytree(lib_dir, self.ctx.get_libs_dir(arch.arch))
+        shutil.copytree(lib_dir, self.ctx.get_libs_dir(arch.arch), dirs_exist_ok=True)
 
         info('Run patchelf on the Qt binaries')
         for binary in list(Path(self.ctx.get_libs_dir(arch.arch))).iterdir():

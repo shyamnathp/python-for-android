@@ -48,16 +48,14 @@ class PySideRecipe(PythonRecipe):
 
         lib_dir = Path(f"{self.ctx.get_python_install_dir(arch.arch)}/PySide6/Qt/lib")
         info('Copying Qt libraries to be loaded on startup')
-        for binary in list(lib_dir.iterdir()):
-            shutil.copyfile(binary,
-                            join(self.ctx.get_libs_dir(arch.arch), binary))
+        shutil.copytree(lib_dir, self.ctx.get_libs_dir(arch.arch))
 
-            info('Run patchelf on the Qt binaries')
-            executable_path = join(self.ctx.get_libs_dir(arch.arch), binary)
-            cmd = [patchelf_path, '--set-rpath', '$ORIGIN', executable_path]
+        info('Run patchelf on the Qt binaries')
+        for binary in list(Path(self.ctx.get_libs_dir(arch.arch))).iterdir():
+            cmd = [patchelf_path, '--set-rpath', '$ORIGIN', binary]
 
             if run_process(cmd) != 0:
-                raise RuntimeError(f"Error patching rpath in {executable_path}")
+                raise RuntimeError(f"Error patching rpath in {binary}")
 
         libcpp_path = f"{self.ctx.ndk_sysroot}/usr/lib/{arch.command_prefix}/libc++_shared.so"
         shutil.copyfile(libcpp_path,

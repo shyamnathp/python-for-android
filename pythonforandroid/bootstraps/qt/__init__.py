@@ -9,9 +9,10 @@ class QtBootstrap(Bootstrap):
 
     name = 'qt'
 
-    recipe_depends = list(
-        set(Bootstrap.recipe_depends).union({'PySide6', 'shiboken6'})
-    )
+    # recipe_depends = list(
+    #     set(Bootstrap.recipe_depends).union({'PySide6', 'shiboken6'})
+    # )
+    recipe_depends = ['python3', 'genericndkbuild', 'PySide6', 'shiboken6']
 
     def assemble_distribution(self):
         info_main('# Creating Android project from build and {} bootstrap'.format(

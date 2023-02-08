@@ -58,10 +58,10 @@ class PySideRecipe(PythonRecipe):
         #         raise RuntimeError(f"Error patching rpath in {binary}")
 
         libcpp_path = f"{self.ctx.ndk_sysroot}/usr/lib/{arch.command_prefix}/libc++_shared.so"
-        shutil.copyfile(libcpp_path, str(Path(self.ctx.get_libs_dir(arch.arch)) / 'libc++_shared.so'))
+        shutil.copyfile(libcpp_path, Path(self.ctx.get_libs_dir(arch.arch)) / 'libc++_shared.so')
 
-        shutil.copyfile(str(Path(self.ctx.get_python_install_dir(arch.arch) / 'PySide6' / 'Qt' / 'plugins' / 'platforms' / 'libplugins_platforms_qtforandroid_x86_64.so')),
-                        str(Path(self.ctx.get_libs_dir(arch.arch) / 'libplugins_platforms_qtforandroid_x86_64.so')))
+        shutil.copyfile(Path(self.ctx.get_python_install_dir(arch.arch)) / 'PySide6' / 'Qt' / 'plugins' / 'platforms' / 'libplugins_platforms_qtforandroid_x86_64.so',
+                        Path(self.ctx.get_libs_dir(arch.arch)) / 'libplugins_platforms_qtforandroid_x86_64.so')
 
 
 recipe = PySideRecipe()

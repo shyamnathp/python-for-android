@@ -36,7 +36,7 @@ android {
         manifestPlaceholders = {{ args.manifest_placeholders}}
     }
 
-	
+
 	packagingOptions {
         jniLibs {
             useLegacyPackaging = true
@@ -48,7 +48,7 @@ android {
         exclude 'lib/**/gdb.setup'
         {%- endif %}
 	}
-	
+
 
 	{% if args.sign -%}
 	signingConfigs {
@@ -107,7 +107,7 @@ android {
     }
 
     aaptOptions {
-        noCompress "tflite"
+        noCompress "tflite", "rcc"
     }
 
 }

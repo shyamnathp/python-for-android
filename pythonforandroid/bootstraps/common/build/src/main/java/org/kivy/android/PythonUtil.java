@@ -49,24 +49,22 @@ public class PythonUtil {
         addLibraryIfExists(libsList, "SDL2_image", libsDir);
         addLibraryIfExists(libsList, "SDL2_mixer", libsDir);
         addLibraryIfExists(libsList, "SDL2_ttf", libsDir);
-        Log.v("Shyam", "loading c++_shared library");
-        addLibraryIfExists(libsList, "c++_shared", libsDir);
-        libsList.add("c++_shared");
-        Log.v("Shyam", "loading Qt libraries");
-        addLibraryIfExists(libsList, "Qt6Core_x86_64", libsDir);
-        addLibraryIfExists(libsList, "Qt6Gui_x86_64", libsDir);
-        addLibraryIfExists(libsList, "Qt6Widgets_x86_64", libsDir);
-        addLibraryIfExists(libsList, "plugins_platforms_qtforandroid_x86_64", libsDir);
-        addLibraryIfExists(libsList, "addressbook_x86_64", libsDir);
-        addLibraryIfExists(libsList, "plugins_imageformats_qgif_x86_64", libsDir);
-        addLibraryIfExists(libsList, "plugins_imageformats_qicns_x86_64", libsDir);
-        addLibraryIfExists(libsList, "plugins_imageformats_qico_x86_64", libsDir);
-        addLibraryIfExists(libsList, "plugins_imageformats_qjpeg_x86_64", libsDir);
-        addLibraryIfExists(libsList, "plugins_imageformats_qtga_x86_64", libsDir);
-        addLibraryIfExists(libsList, "plugins_imageformats_qtiff_x86_64", libsDir);
-        addLibraryIfExists(libsList, "plugins_imageformats_qwbmp_x86_64", libsDir);
-        addLibraryIfExists(libsList, "plugins_imageformats_qwebp_x86_64", libsDir);
-        addLibraryIfExists(libsList, "plugins_styles_qandroidstyle_x86_64", libsDir);
+        // addLibraryIfExists(libsList, "c++_shared", libsDir);
+        // libsList.add("c++_shared");
+        // addLibraryIfExists(libsList, "Qt6Core_x86_64", libsDir);
+        // addLibraryIfExists(libsList, "Qt6Gui_x86_64", libsDir);
+        // addLibraryIfExists(libsList, "Qt6Widgets_x86_64", libsDir);
+        // addLibraryIfExists(libsList, "plugins_platforms_qtforandroid_x86_64", libsDir);
+        // addLibraryIfExists(libsList, "addressbook_x86_64", libsDir);
+        // addLibraryIfExists(libsList, "plugins_imageformats_qgif_x86_64", libsDir);
+        // addLibraryIfExists(libsList, "plugins_imageformats_qicns_x86_64", libsDir);
+        // addLibraryIfExists(libsList, "plugins_imageformats_qico_x86_64", libsDir);
+        // addLibraryIfExists(libsList, "plugins_imageformats_qjpeg_x86_64", libsDir);
+        // addLibraryIfExists(libsList, "plugins_imageformats_qtga_x86_64", libsDir);
+        // addLibraryIfExists(libsList, "plugins_imageformats_qtiff_x86_64", libsDir);
+        // addLibraryIfExists(libsList, "plugins_imageformats_qwbmp_x86_64", libsDir);
+        // addLibraryIfExists(libsList, "plugins_imageformats_qwebp_x86_64", libsDir);
+        // addLibraryIfExists(libsList, "plugins_styles_qandroidstyle_x86_64", libsDir);
         libsList.add("python3.5m");
         libsList.add("python3.6m");
         libsList.add("python3.7m");
@@ -82,14 +80,6 @@ public class PythonUtil {
         for (String lib : getLibraries(libsDir)) {
             Log.v(TAG, "Loading library: " + lib);
             try {
-                // if (lib.contains("plugins_platforms")) {
-                //     String platform_plugin = "/data/app/~~DCB-oEEUz5ZpNrYHaXbfUA==/org.qtproject.example.addressbook-ewGJs_dDua-qQjjYyDTc0Q==/lib/x86_64/libplugins_platforms_qtforandroid_x86_64.so";
-                //     Log.v(TAG, "Loading Shyam libplugins_platforms" + platform_plugin);
-                //     System.load(platform_plugin);
-                // }
-                // else
-                // {
-                // Log.v(TAG, "Loading Shyam libplugins_platforms not load");
                 System.loadLibrary(lib);
                 if (lib.startsWith("python")) {
                     foundPython = true;

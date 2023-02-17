@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <array name="bundled_libs">
+    <!-- bundled_libs needs work -->
+    </array>
+
+    <array name="qt_libs">
+        <item>{{ arch }};c++_shared</item>
+        {%- for qt_lib in qt_libs %}
+        <item>{{ arch }};Qt6{{ qt_lib }}_{{ arch }}</item>
+        {%- endfor -%}
+    </array>
+
+    <array name="load_local_libs">
+        {%- for load_local_lib in load_local_libs %}
+        <item>{{ arch }};lib{{ load_local_lib }}_{{ arch }}.so</item>
+        {%- endfor -%}
+    </array>
+
+    <!-- Accept these through command line -->
+    <string name="static_init_classes"></string>
+    <string name="use_local_qt_libs">1</string>
+    <string name="bundle_local_qt_libs">1</string>
+</resources>

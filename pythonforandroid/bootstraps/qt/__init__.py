@@ -14,6 +14,11 @@ class QtBootstrap(Bootstrap):
     # )
     recipe_depends = ['python3', 'genericndkbuild', 'PySide6', 'shiboken6']
 
+    def get_recipe_env(self, arch=None, with_flags_in_cc=True, with_python=False):
+        env = super().get_recipe_env(arch, with_flags_in_cc)
+        env['PREFERRED_ABI'] = arch.arch
+        return env
+
     def assemble_distribution(self):
         info_main('# Creating Android project from build and {} bootstrap'.format(
             self.name))

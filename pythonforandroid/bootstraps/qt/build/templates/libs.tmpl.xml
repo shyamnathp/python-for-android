@@ -15,6 +15,9 @@
         {%- for load_local_lib in load_local_libs %}
         <item>{{ arch }};lib{{ load_local_lib }}_{{ arch }}.so</item>
         {%- endfor -%}
+        <item>{{ arch }};libshiboken6.abi3.so</item>
+        <item>{{ arch }};libpyside6.abi3.so</item>
+        <item>{{ arch }};QtCore.abi3.so</item>
     </array>
 
     <!-- Accept these through command line -->

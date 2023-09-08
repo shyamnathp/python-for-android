@@ -18,12 +18,18 @@
     <uses-sdk android:minSdkVersion="{{ args.min_sdk_version }}" android:targetSdkVersion="{{ android_api }}" />
     <uses-feature android:glEsVersion="0x00020000" />
 
+<<<<<<< HEAD
     {% for perm in args.permissions %}
     {% if '.' in perm %}
     <uses-permission android:name="{{ perm }}" />
     {% else %}
     <uses-permission android:name="android.permission.{{ perm }}" />
     {% endif %}
+=======
+    <!-- Set permissions -->
+    {% for perm in args.permissions %}
+        <uses-permission android:name="{{ perm.name }}"{% if perm.maxSdkVersion %} android:maxSdkVersion="{{ perm.maxSdkVersion }}"{% endif %}{% if perm.usesPermissionFlags %} android:usesPermissionFlags="{{ perm.usesPermissionFlags }}"{% endif %} />
+>>>>>>> 27501e0e95ee9936630b11f1bcf4d77a09252481
     {% endfor %}
 
     {% if args.wakelock %}
@@ -47,8 +53,11 @@
                  android:theme="{{args.android_apptheme}}{% if not args.window %}.Fullscreen{% endif %}"
                  android:hardwareAccelerated="true"
                  >
-                <!-- android:requestLegacyExternalStorage="true"
-                 android:allowNativeHeapPointerTagging="false" -->
+                <!--
+                 android:extractNativeLibs="true" = needed for smaller apk size
+                 android:requestLegacyExternalStorage="true"
+                 android:allowNativeHeapPointerTagging="false"
+                -->
         {% for l in args.android_used_libs %}
         <uses-library android:name="{{ l }}" />
         {% endfor %}

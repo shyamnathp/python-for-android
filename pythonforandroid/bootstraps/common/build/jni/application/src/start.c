@@ -127,7 +127,7 @@ int main(int argc, char *argv[]) {
                 env_value[strlen(env_value)-1] == '\r') {
               // Also remove windows line breaks (\r\n)
               env_value[strlen(env_value)-1] = '\0';
-            } 
+            }
           }
 
           // Set value:
@@ -393,7 +393,7 @@ JNIEXPORT void JNICALL Java_org_kivy_android_PythonService_nativeStart(
   main(1, argv);
 }
 
-#if defined(BOOTSTRAP_NAME_WEBVIEW) || defined(BOOTSTRAP_NAME_SERVICEONLY)
+#if defined(BOOTSTRAP_NAME_WEBVIEW) || defined(BOOTSTRAP_NAME_SERVICEONLY) || defined(BOOTSTRAP_NAME_QT)
 // Webview and service_only uses some more functions:
 
 void Java_org_kivy_android_PythonActivity_nativeSetenv(

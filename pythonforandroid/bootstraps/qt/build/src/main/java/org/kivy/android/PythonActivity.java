@@ -21,7 +21,6 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 
 import org.qtproject.qt.android.bindings.QtActivity;
-import org.qtproject.qt.android.QtNative;
 
 public class PythonActivity extends QtActivity {
 
@@ -69,14 +68,14 @@ public class PythonActivity extends QtActivity {
         String entry_point = getEntryPoint(app_root_dir);
 
         Log.v(TAG, "Setting env vars for start.c and Python to use");
-        QtNative.setEnvironmentVariable("ANDROID_ENTRYPOINT", entry_point);
-        QtNative.setEnvironmentVariable("ANDROID_ARGUMENT", app_root_dir);
-        QtNative.setEnvironmentVariable("ANDROID_APP_PATH", app_root_dir);
-        QtNative.setEnvironmentVariable("ANDROID_PRIVATE", mFilesDirectory);
-        QtNative.setEnvironmentVariable("ANDROID_UNPACK", app_root_dir);
-        QtNative.setEnvironmentVariable("PYTHONHOME", app_root_dir);
-        QtNative.setEnvironmentVariable("PYTHONPATH", app_root_dir + ":" + app_root_dir + "/lib");
-        QtNative.setEnvironmentVariable("PYTHONOPTIMIZE", "2");
+        PythonActivity.nativeSetenv("ANDROID_ENTRYPOINT", entry_point);
+        PythonActivity.nativeSetenv("ANDROID_ARGUMENT", app_root_dir);
+        PythonActivity.nativeSetenv("ANDROID_APP_PATH", app_root_dir);
+        PythonActivity.nativeSetenv("ANDROID_PRIVATE", mFilesDirectory);
+        PythonActivity.nativeSetenv("ANDROID_UNPACK", app_root_dir);
+        PythonActivity.nativeSetenv("PYTHONHOME", app_root_dir);
+        PythonActivity.nativeSetenv("PYTHONPATH", app_root_dir + ":" + app_root_dir + "/lib");
+        PythonActivity.nativeSetenv("PYTHONOPTIMIZE", "2");
 
         Log.v(TAG, "About to do super onCreate");
         super.onCreate(savedInstanceState);
@@ -241,5 +240,7 @@ public class PythonActivity extends QtActivity {
         Intent serviceIntent = new Intent(PythonActivity.mActivity, PythonService.class);
         PythonActivity.mActivity.stopService(serviceIntent);
     }
+
+    public static native void nativeSetenv(String name, String value);
 
 }
